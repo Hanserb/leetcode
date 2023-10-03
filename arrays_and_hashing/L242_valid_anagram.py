@@ -1,14 +1,14 @@
-def validAnagram(s: str, t: str):
+def isAnagram(s: str, t: str):
 
-    # If not same length they are not Anagrams
+    # Checking if not same length they are not Anagrams
     if len(s) != len(t):
         return False
 
     # Creating dictionary to track letter(key) : size(value) 
     # Example: {'a' : 3}
-    countS = {}
-    countT = {}
+    countS, countT = {}, {}
 
+    # Iterating in range length of S because T is the same size
     for i in range(len(s)):
 
         countS[s[i]] = 1 + countS.get(s[i], 0)
@@ -23,4 +23,4 @@ def validAnagram(s: str, t: str):
 word1 = "anagram"
 word2 = "nagaram"
 
-print(validAnagram(word1, word2))
+print(isAnagram(word1, word2))
