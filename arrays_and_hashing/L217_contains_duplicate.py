@@ -1,5 +1,4 @@
 def containsDuplicate(nums) -> bool:
-    
     # Create a new hash
     hashset = set()
 

@@ -7,8 +7,8 @@ def twoSum(nums, target):
         # Target minus current element gives you the number you are looking for
         diff = target - n
 
-        # If diff present in dict, it means that we have found two elements 
-        # whose sum equals the target value. In this case, we return a list containing the indices of these two elements.
+        # If diff present in dict, it means that we have found two elements the target value. 
+        # In this case, we return a list containing the indices of these two elements.
         if diff in dict:
             return [dict[diff], i]
         
