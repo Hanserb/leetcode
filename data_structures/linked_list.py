@@ -1,71 +1,62 @@
 class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
+    def __init__(self, value: int):
+        self.value = value
+        self.next: Node | None = None
 
 
 class LinkedList:
     def __init__(self):
-        self.head = None
+        self.head: Node | None = None
 
-    def insert_at_beginning(self, data):
-        new_node = Node(data)
+    def insert_at_head(self, value: int) -> None:
+        new_node = Node(value)
         new_node.next = self.head
         self.head = new_node
 
-    def insert_at_end(self, data):
-        new_node = Node(data)
+    def insert_at_tail(self, value: int) -> None:
+        new_node = Node(value)
         if self.head is None:
             self.head = new_node
             return
-        last_node = self.head
-        while last_node.next:
-            last_node = last_node.next
-        last_node.next = new_node
 
-    def display(self):
-        current_node = self.head
-        while current_node:
-            print(current_node.data, end=" -> ")
-            current_node = current_node.next
+        cur_node = self.head
+        while cur_node.next:
+            cur_node = cur_node.next
+        cur_node.next = new_node
+
+    def reverse_list(self) -> None:
+        curr_node = self.head
+        prev_node: Node | None = None
+
+        while curr_node:
+            nxt = curr_node.next
+            curr_node.next = prev_node
+            prev_node = curr_node
+            curr_node = nxt
+        self.head = prev_node
+
+    def print_list(self) -> None:
+        curr_node = self.head
+        while curr_node:
+            print(curr_node.value, end=" -> ")
+            curr_node = curr_node.next
         print("None")
 
-    def delete_node(self, key):
-        current_node = self.head
 
-        # If the head node itself holds the key to be deleted
-        if current_node and current_node.data == key:
-            self.head = current_node.next
-            current_node = None
-            return
+if __name__ == "__main__":
+    my_linked_list = LinkedList()
 
-        # Search for the key to be deleted, keep track of the previous node
-        prev = None
-        while current_node and current_node.data != key:
-            prev = current_node
-            current_node = current_node.next
+    my_linked_list.insert_at_head(5)
+    my_linked_list.insert_at_head(4)
+    my_linked_list.insert_at_head(3)
 
-        # If the key was not present in the linked list
-        if current_node is None:
-            return
+    my_linked_list.insert_at_tail(12)
+    my_linked_list.insert_at_tail(15)
+    my_linked_list.insert_at_tail(18)
+    my_linked_list.insert_at_tail(21)
 
-        # Unlink the node from the linked list
-        prev.next = current_node.next
-        current_node = None
+    my_linked_list.print_list()
 
+    my_linked_list.reverse_list()
 
-# Creating a linked list and adding some nodes
-ll = LinkedList()
-ll.insert_at_end(1)
-ll.insert_at_end(2)
-ll.insert_at_end(3)
-ll.insert_at_beginning(0)
-
-# Display the linked list
-ll.display()  # Output: 0 -> 1 -> 2 -> 3 -> None
-
-# Deleting a node
-ll.delete_node(2)
-
-# Display the linked list after deletion
-ll.display()  # Output: 0 -> 1 -> 3 -> None
+    my_linked_list.print_list()

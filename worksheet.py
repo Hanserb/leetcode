@@ -1,62 +1,50 @@
 class Node:
-    def __init__(self, value: int):
-        self.value = value
-        self.next: Node | None = None
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
 
 
 class LinkedList:
     def __init__(self):
-        self.head: Node | None = None
+        self.head = Node()
 
-    def insert_at_head(self, value: int) -> None:
-        new_node = Node(value)
-        new_node.next = self.head
-        self.head = new_node
+    def append(self, data):
+        newNode = Node(data)
+        currNode = self.head
 
-    def insert_at_tail(self, value: int) -> None:
-        new_node = Node(value)
-        if self.head is None:
-            self.head = new_node
-            return
+        while currNode.next:
+            currNode = currNode.next
 
-        cur_node = self.head
-        while cur_node.next:
-            cur_node = cur_node.next
-        cur_node.next = new_node
+        currNode.next = newNode
 
-    def reverse_list(self) -> None:
+    def reverseList(self):
+        prev = None
+        curr = self.head.next
+        while curr:
+            next = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next
+        self.head.next = prev
+
+    def display(self) -> None:
         curr_node = self.head
-        prev_node: Node | None = None
 
         while curr_node:
-            nxt = curr_node.next
-            curr_node.next = prev_node
-            prev_node = curr_node
-            curr_node = nxt
-        self.head = prev_node
-
-    def print_list(self) -> None:
-        curr_node = self.head
-        while curr_node:
-            print(curr_node.value, end=" -> ")
+            print(curr_node.data, end=" -> ")
             curr_node = curr_node.next
         print("None")
 
 
-if __name__ == "__main__":
-    my_linked_list = LinkedList()
+mylist = LinkedList()
 
-    my_linked_list.insert_at_head(5)
-    my_linked_list.insert_at_head(4)
-    my_linked_list.insert_at_head(3)
+mylist.append(1)
+mylist.append(2)
+mylist.append(3)
+mylist.append(4)
+mylist.append(5)
 
-    my_linked_list.insert_at_tail(12)
-    my_linked_list.insert_at_tail(15)
-    my_linked_list.insert_at_tail(18)
-    my_linked_list.insert_at_tail(21)
+mylist.display()
 
-    my_linked_list.print_list()
-
-    my_linked_list.reverse_list()
-
-    my_linked_list.print_list()
+mylist.reverseList()
+mylist.display()
