@@ -43,20 +43,21 @@ class LinkedList:
         print("None")
 
 
+def mergeTwoLists(self, list1, list2):
+    pass
+
 if __name__ == "__main__":
-    my_linked_list = LinkedList()
+    list_1 = LinkedList()
+    list_1.insert_at_head(1)
+    list_1.insert_at_head(2)
+    list_1.insert_at_head(4)
 
-    my_linked_list.insert_at_head(5)
-    my_linked_list.insert_at_head(4)
-    my_linked_list.insert_at_head(3)
+    list_2 = LinkedList()
+    list_2.insert_at_head(1)
+    list_2.insert_at_head(3)
+    list_2.insert_at_head(4)
 
-    my_linked_list.insert_at_tail(12)
-    my_linked_list.insert_at_tail(15)
-    my_linked_list.insert_at_tail(18)
-    my_linked_list.insert_at_tail(21)
+    list_1.print_list()
+    list_2.print_list()
 
-    my_linked_list.print_list()
-
-    my_linked_list.reverse_list()
-
-    my_linked_list.print_list()
+    mergeTwoLists(list_1, list_2)
